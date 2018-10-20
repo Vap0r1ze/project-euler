@@ -22,3 +22,25 @@ exports.isPrime = function isPrime (n) {
   }
   return true
 }
+
+exports.factorCount = function factorCount (n) {
+  if (!(n % 2)) n /= 2
+  let d = 1
+  let c = 0
+  while (!(n % 2)) {
+    c++
+    n /= 2
+  }
+  d *= c + 1
+  let p = 3
+  while (n !== 1) {
+    c = 0
+    while (!(n % p)) {
+      c++
+      n /= p
+    }
+    d *= c + 1
+    p += 2
+  }
+  return d
+}

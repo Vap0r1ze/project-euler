@@ -1,4 +1,4 @@
-const { 7: n } = require('./largeConstants')
+const { n8: n } = require('./largeConstants')
 
 let products = []
 for (let i = 0; i <= n.length - 13; i++) {
