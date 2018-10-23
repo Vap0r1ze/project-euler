@@ -7,17 +7,25 @@ function* gen (n) {
   }
 }
 
-let longest = [1, 1]
-
-for (let i = 2; i < 1e6; i++) {
+let longest = [1, 1] // [number, sequence length]
+let visited = { 1: 1 }
+for (let i = 1e6 - 1; i > 1; i--) {
+  if (visited[i]) continue
   let iter = gen(i)
-  let seq = []
+  let seqlen = 0
   while (true) {
     let res = iter.next()
-    seq.push(res.value)
+    let n = res.value
+    if (visited[n]) {
+      seqlen += visited[n]
+      break
+    } else {
+      seqlen++
+    }
     if (res.done) break
   }
-  if (longest[1] < seq.length) longest = [i, seq.length]
+  if (!visited[i]) visited[i] = seqlen
+  if (longest[1] < seqlen) longest = [i, seqlen]
 }
 
 exports.value = longest[0]
